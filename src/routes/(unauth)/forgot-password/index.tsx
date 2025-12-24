@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { useState, useEffect } from 'react'
 import { forgetPassword } from '@/lib/auth-client'
+import { useAuth } from '@/lib/auth-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -12,10 +13,19 @@ export const Route = createFileRoute('/(unauth)/forgot-password/')({
 })
 
 function ForgotPasswordPage() {
+  const navigate = useNavigate()
+  const { user, isLoading: authLoading } = useAuth()
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate({ to: '/admin' })
+    }
+  }, [user, authLoading, navigate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

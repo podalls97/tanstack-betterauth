@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAuth } from '@/lib/auth-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -19,6 +20,7 @@ const REQUEST_STEPS = [
 
 function RequestAccessPage() {
   const navigate = useNavigate()
+  const { user, isLoading: authLoading } = useAuth()
   const [username, setUsername] = useState('')
   const [displayUsername, setDisplayUsername] = useState('')
   const [name, setName] = useState('')
@@ -28,6 +30,13 @@ function RequestAccessPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [success, setSuccess] = useState(false)
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate({ to: '/admin' })
+    }
+  }, [user, authLoading, navigate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
