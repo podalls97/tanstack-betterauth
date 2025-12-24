@@ -177,9 +177,9 @@ export const Route = createFileRoute('/api/admin/access-requests/$')({
               if (!result?.status) {
                  throw new Error(`Failed to trigger password reset: ${result?.message || 'Unknown error'}`)
               }
-              
-              console.log('Better Auth forget-password triggered successfully')
-              
+
+              console.log('Password reset email triggered successfully:', result.message)
+
             } catch (emailError) {
               console.error('Failed to send password reset email:', emailError)
               // Don't fail the approval if email fails - log it and continue
