@@ -10,33 +10,225 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as unauthSignUpIndexRouteImport } from './routes/(unauth)/sign-up/index'
+import { Route as unauthSignInIndexRouteImport } from './routes/(unauth)/sign-in/index'
+import { Route as unauthResetPasswordIndexRouteImport } from './routes/(unauth)/reset-password/index'
+import { Route as unauthRequestAccessIndexRouteImport } from './routes/(unauth)/request-access/index'
+import { Route as unauthForgotPasswordIndexRouteImport } from './routes/(unauth)/forgot-password/index'
+import { Route as demoSignUpDemoIndexRouteImport } from './routes/(demo)/sign-up-demo/index'
+import { Route as demoSignInDemoIndexRouteImport } from './routes/(demo)/sign-in-demo/index'
+import { Route as demoRequestAccessDemoIndexRouteImport } from './routes/(demo)/request-access-demo/index'
+import { Route as demoForgotPasswordDemoIndexRouteImport } from './routes/(demo)/forgot-password-demo/index'
+import { Route as demoAdminDemoIndexRouteImport } from './routes/(demo)/admin-demo/index'
+import { Route as authAdminIndexRouteImport } from './routes/(auth)/admin/index'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiAccessRequestSplatRouteImport } from './routes/api/access-request/$'
+import { Route as ApiAdminAccessRequestsSplatRouteImport } from './routes/api/admin/access-requests/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const unauthSignUpIndexRoute = unauthSignUpIndexRouteImport.update({
+  id: '/(unauth)/sign-up/',
+  path: '/sign-up/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const unauthSignInIndexRoute = unauthSignInIndexRouteImport.update({
+  id: '/(unauth)/sign-in/',
+  path: '/sign-in/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const unauthResetPasswordIndexRoute =
+  unauthResetPasswordIndexRouteImport.update({
+    id: '/(unauth)/reset-password/',
+    path: '/reset-password/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const unauthRequestAccessIndexRoute =
+  unauthRequestAccessIndexRouteImport.update({
+    id: '/(unauth)/request-access/',
+    path: '/request-access/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const unauthForgotPasswordIndexRoute =
+  unauthForgotPasswordIndexRouteImport.update({
+    id: '/(unauth)/forgot-password/',
+    path: '/forgot-password/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const demoSignUpDemoIndexRoute = demoSignUpDemoIndexRouteImport.update({
+  id: '/(demo)/sign-up-demo/',
+  path: '/sign-up-demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const demoSignInDemoIndexRoute = demoSignInDemoIndexRouteImport.update({
+  id: '/(demo)/sign-in-demo/',
+  path: '/sign-in-demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const demoRequestAccessDemoIndexRoute =
+  demoRequestAccessDemoIndexRouteImport.update({
+    id: '/(demo)/request-access-demo/',
+    path: '/request-access-demo/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const demoForgotPasswordDemoIndexRoute =
+  demoForgotPasswordDemoIndexRouteImport.update({
+    id: '/(demo)/forgot-password-demo/',
+    path: '/forgot-password-demo/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const demoAdminDemoIndexRoute = demoAdminDemoIndexRouteImport.update({
+  id: '/(demo)/admin-demo/',
+  path: '/admin-demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authAdminIndexRoute = authAdminIndexRouteImport.update({
+  id: '/(auth)/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAccessRequestSplatRoute = ApiAccessRequestSplatRouteImport.update({
+  id: '/api/access-request/$',
+  path: '/api/access-request/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminAccessRequestsSplatRoute =
+  ApiAdminAccessRequestsSplatRouteImport.update({
+    id: '/api/admin/access-requests/$',
+    path: '/api/admin/access-requests/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/access-request/$': typeof ApiAccessRequestSplatRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin': typeof authAdminIndexRoute
+  '/admin-demo': typeof demoAdminDemoIndexRoute
+  '/forgot-password-demo': typeof demoForgotPasswordDemoIndexRoute
+  '/request-access-demo': typeof demoRequestAccessDemoIndexRoute
+  '/sign-in-demo': typeof demoSignInDemoIndexRoute
+  '/sign-up-demo': typeof demoSignUpDemoIndexRoute
+  '/forgot-password': typeof unauthForgotPasswordIndexRoute
+  '/request-access': typeof unauthRequestAccessIndexRoute
+  '/reset-password': typeof unauthResetPasswordIndexRoute
+  '/sign-in': typeof unauthSignInIndexRoute
+  '/sign-up': typeof unauthSignUpIndexRoute
+  '/api/admin/access-requests/$': typeof ApiAdminAccessRequestsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/access-request/$': typeof ApiAccessRequestSplatRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin': typeof authAdminIndexRoute
+  '/admin-demo': typeof demoAdminDemoIndexRoute
+  '/forgot-password-demo': typeof demoForgotPasswordDemoIndexRoute
+  '/request-access-demo': typeof demoRequestAccessDemoIndexRoute
+  '/sign-in-demo': typeof demoSignInDemoIndexRoute
+  '/sign-up-demo': typeof demoSignUpDemoIndexRoute
+  '/forgot-password': typeof unauthForgotPasswordIndexRoute
+  '/request-access': typeof unauthRequestAccessIndexRoute
+  '/reset-password': typeof unauthResetPasswordIndexRoute
+  '/sign-in': typeof unauthSignInIndexRoute
+  '/sign-up': typeof unauthSignUpIndexRoute
+  '/api/admin/access-requests/$': typeof ApiAdminAccessRequestsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/access-request/$': typeof ApiAccessRequestSplatRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(auth)/admin/': typeof authAdminIndexRoute
+  '/(demo)/admin-demo/': typeof demoAdminDemoIndexRoute
+  '/(demo)/forgot-password-demo/': typeof demoForgotPasswordDemoIndexRoute
+  '/(demo)/request-access-demo/': typeof demoRequestAccessDemoIndexRoute
+  '/(demo)/sign-in-demo/': typeof demoSignInDemoIndexRoute
+  '/(demo)/sign-up-demo/': typeof demoSignUpDemoIndexRoute
+  '/(unauth)/forgot-password/': typeof unauthForgotPasswordIndexRoute
+  '/(unauth)/request-access/': typeof unauthRequestAccessIndexRoute
+  '/(unauth)/reset-password/': typeof unauthResetPasswordIndexRoute
+  '/(unauth)/sign-in/': typeof unauthSignInIndexRoute
+  '/(unauth)/sign-up/': typeof unauthSignUpIndexRoute
+  '/api/admin/access-requests/$': typeof ApiAdminAccessRequestsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/access-request/$'
+    | '/api/auth/$'
+    | '/admin'
+    | '/admin-demo'
+    | '/forgot-password-demo'
+    | '/request-access-demo'
+    | '/sign-in-demo'
+    | '/sign-up-demo'
+    | '/forgot-password'
+    | '/request-access'
+    | '/reset-password'
+    | '/sign-in'
+    | '/sign-up'
+    | '/api/admin/access-requests/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/access-request/$'
+    | '/api/auth/$'
+    | '/admin'
+    | '/admin-demo'
+    | '/forgot-password-demo'
+    | '/request-access-demo'
+    | '/sign-in-demo'
+    | '/sign-up-demo'
+    | '/forgot-password'
+    | '/request-access'
+    | '/reset-password'
+    | '/sign-in'
+    | '/sign-up'
+    | '/api/admin/access-requests/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/access-request/$'
+    | '/api/auth/$'
+    | '/(auth)/admin/'
+    | '/(demo)/admin-demo/'
+    | '/(demo)/forgot-password-demo/'
+    | '/(demo)/request-access-demo/'
+    | '/(demo)/sign-in-demo/'
+    | '/(demo)/sign-up-demo/'
+    | '/(unauth)/forgot-password/'
+    | '/(unauth)/request-access/'
+    | '/(unauth)/reset-password/'
+    | '/(unauth)/sign-in/'
+    | '/(unauth)/sign-up/'
+    | '/api/admin/access-requests/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAccessRequestSplatRoute: typeof ApiAccessRequestSplatRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  authAdminIndexRoute: typeof authAdminIndexRoute
+  demoAdminDemoIndexRoute: typeof demoAdminDemoIndexRoute
+  demoForgotPasswordDemoIndexRoute: typeof demoForgotPasswordDemoIndexRoute
+  demoRequestAccessDemoIndexRoute: typeof demoRequestAccessDemoIndexRoute
+  demoSignInDemoIndexRoute: typeof demoSignInDemoIndexRoute
+  demoSignUpDemoIndexRoute: typeof demoSignUpDemoIndexRoute
+  unauthForgotPasswordIndexRoute: typeof unauthForgotPasswordIndexRoute
+  unauthRequestAccessIndexRoute: typeof unauthRequestAccessIndexRoute
+  unauthResetPasswordIndexRoute: typeof unauthResetPasswordIndexRoute
+  unauthSignInIndexRoute: typeof unauthSignInIndexRoute
+  unauthSignUpIndexRoute: typeof unauthSignUpIndexRoute
+  ApiAdminAccessRequestsSplatRoute: typeof ApiAdminAccessRequestsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +240,123 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(unauth)/sign-up/': {
+      id: '/(unauth)/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof unauthSignUpIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(unauth)/sign-in/': {
+      id: '/(unauth)/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof unauthSignInIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(unauth)/reset-password/': {
+      id: '/(unauth)/reset-password/'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof unauthResetPasswordIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(unauth)/request-access/': {
+      id: '/(unauth)/request-access/'
+      path: '/request-access'
+      fullPath: '/request-access'
+      preLoaderRoute: typeof unauthRequestAccessIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(unauth)/forgot-password/': {
+      id: '/(unauth)/forgot-password/'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof unauthForgotPasswordIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(demo)/sign-up-demo/': {
+      id: '/(demo)/sign-up-demo/'
+      path: '/sign-up-demo'
+      fullPath: '/sign-up-demo'
+      preLoaderRoute: typeof demoSignUpDemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(demo)/sign-in-demo/': {
+      id: '/(demo)/sign-in-demo/'
+      path: '/sign-in-demo'
+      fullPath: '/sign-in-demo'
+      preLoaderRoute: typeof demoSignInDemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(demo)/request-access-demo/': {
+      id: '/(demo)/request-access-demo/'
+      path: '/request-access-demo'
+      fullPath: '/request-access-demo'
+      preLoaderRoute: typeof demoRequestAccessDemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(demo)/forgot-password-demo/': {
+      id: '/(demo)/forgot-password-demo/'
+      path: '/forgot-password-demo'
+      fullPath: '/forgot-password-demo'
+      preLoaderRoute: typeof demoForgotPasswordDemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(demo)/admin-demo/': {
+      id: '/(demo)/admin-demo/'
+      path: '/admin-demo'
+      fullPath: '/admin-demo'
+      preLoaderRoute: typeof demoAdminDemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/admin/': {
+      id: '/(auth)/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof authAdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/access-request/$': {
+      id: '/api/access-request/$'
+      path: '/api/access-request/$'
+      fullPath: '/api/access-request/$'
+      preLoaderRoute: typeof ApiAccessRequestSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/access-requests/$': {
+      id: '/api/admin/access-requests/$'
+      path: '/api/admin/access-requests/$'
+      fullPath: '/api/admin/access-requests/$'
+      preLoaderRoute: typeof ApiAdminAccessRequestsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAccessRequestSplatRoute: ApiAccessRequestSplatRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
+  authAdminIndexRoute: authAdminIndexRoute,
+  demoAdminDemoIndexRoute: demoAdminDemoIndexRoute,
+  demoForgotPasswordDemoIndexRoute: demoForgotPasswordDemoIndexRoute,
+  demoRequestAccessDemoIndexRoute: demoRequestAccessDemoIndexRoute,
+  demoSignInDemoIndexRoute: demoSignInDemoIndexRoute,
+  demoSignUpDemoIndexRoute: demoSignUpDemoIndexRoute,
+  unauthForgotPasswordIndexRoute: unauthForgotPasswordIndexRoute,
+  unauthRequestAccessIndexRoute: unauthRequestAccessIndexRoute,
+  unauthResetPasswordIndexRoute: unauthResetPasswordIndexRoute,
+  unauthSignInIndexRoute: unauthSignInIndexRoute,
+  unauthSignUpIndexRoute: unauthSignUpIndexRoute,
+  ApiAdminAccessRequestsSplatRoute: ApiAdminAccessRequestsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

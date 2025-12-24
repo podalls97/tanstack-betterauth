@@ -1,8 +1,10 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { AuthProvider } from '@/lib/auth-context'
 
 import appCss from '../styles.css?url'
+import { Toaster } from '@/components/ui/sonner'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,7 +17,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Podalls Demo',
       },
     ],
     links: [
@@ -36,7 +38,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        <Toaster />
         <TanStackDevtools
           config={{
             position: 'bottom-right',
