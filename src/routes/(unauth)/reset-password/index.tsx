@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate, useSearch } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { resetPassword } from '@/lib/auth-client'
+import { useAuth } from '@/lib/auth-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -18,6 +19,7 @@ export const Route = createFileRoute('/(unauth)/reset-password/')({
 
 function ResetPasswordPage() {
   const navigate = useNavigate()
+  const { user, isLoading: authLoading } = useAuth()
   const search = useSearch({ from: '/(unauth)/reset-password/' })
   const token = search.token || '' 
   
@@ -26,6 +28,13 @@ function ResetPasswordPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate({ to: '/admin' })
+    }
+  }, [user, authLoading, navigate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

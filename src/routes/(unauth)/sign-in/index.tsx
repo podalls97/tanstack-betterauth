@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { signIn } from '@/lib/auth-client'
+import { useAuth } from '@/lib/auth-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -19,12 +20,27 @@ const SIGN_IN_STEPS = [
 
 function SignInPage() {
   const navigate = useNavigate()
+  const { user, isLoading: authLoading } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [success, setSuccess] = useState(false)
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate({ to: '/admin' })
+    }
+  }, [user, authLoading, navigate])
+
+  const handleCloseLoader = () => {
+    setError('')
+    setIsLoading(false)
+    setSuccess(false)
+    setCurrentStep(0)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,10 +55,15 @@ function SignInPage() {
       setCurrentStep(1)
 
       // Step 2: Authenticating
-      await signIn.username({
+      const result = await signIn.username({
         username,
         password,
       })
+
+      // Check if authentication failed
+      if (result.error) {
+        throw new Error(result.error.message || 'Invalid username or password')
+      }
 
       setCurrentStep(2)
       await new Promise((resolve) => setTimeout(resolve, 300))
@@ -57,6 +78,8 @@ function SignInPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Invalid username or password')
       setIsLoading(false)
+      setSuccess(false)
+      setCurrentStep(0)
     }
   }
 
@@ -68,6 +91,8 @@ function SignInPage() {
         loading={isLoading}
         success={success}
         error={error}
+        onClose={handleCloseLoader}
+        successMessage="Sign in successful! Redirecting..."
       />
 
       <div className="flex min-h-screen items-center justify-center p-4">
