@@ -57,7 +57,7 @@ function App() {
             asChild
           >
             <a
-              href="https://github.com/podalls97/tanstack-start-betterauth"
+              href="https://github.com/podalls97/tanstack-betterauth"
               target="_blank"
               rel="noreferrer"
             >
